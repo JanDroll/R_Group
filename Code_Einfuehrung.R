@@ -1,5 +1,5 @@
-require(tidyverse)
-require(palmerpenguins)
+library(tidyverse)
+library(palmerpenguins)
 
 # count() function of dplyr ----
 
