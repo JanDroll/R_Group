@@ -9,7 +9,7 @@ count(penguins, species)
 # here we count how many individuals live on what island
 count(penguins, island)
 
-# counting with multile options
+# counting with multiple options
 count(penguins, species, island)
 
 # here is the same code as in line 7 but with a pipe %>% 
@@ -18,13 +18,13 @@ penguins %>%
 
 # filter() function of dplyr ----
 
-# Filter the dataset for female penguins
+# Filter the data set for female penguins
 filter(penguins, sex == "female")
 
 # Filter out all female penguins
 filter(penguins, sex != "female")
 
-# Filter all penguins wit a bodymass of 4000 g or smaller
+# Filter all penguins wit a body mass of 4000 g or smaller
 filter(penguins, body_mass_g <= 4000)
 
 # Saving the filtered data to an object
@@ -38,10 +38,10 @@ filter(penguins, species %in% c("Adelie", "Chinstrap"))
 
 # mutate() function of dplyr ----
 
-# Adding a new column to the dataset we call bill_factor
+# Adding a new column to the data set we call bill_factor
 pen_bill <- mutate(penguins, bill_factor = bill_length_mm / bill_depth_mm)
 
-# Changing an already existing column -> here we confert gramms to kilogramms
+# Changing an already existing column -> here we convert gram to kilogram
 pen_kg <- mutate(penguins, body_mass_g = body_mass_g / 1000)
 
 # relocate() function of dplyr ----
@@ -67,13 +67,13 @@ pen_kg <- penguins %>%
 
 # Here we using the mutate() function to add another column
 # called weight_category. Then the case_when() function was
-# used to fill the column. If penguins were havier than 4000 g
+# used to fill the column. If penguins were heavier than 4000 g
 # they were classified 'heavy', otherwise 'light
 mutate(penguins, weight_category = case_when(body_mass_g > 4000 ~ "heavy",
                                              TRUE ~ "light"))
 
 # Same principle here, but a sub-category 'medium' was added
-# for penguins between 3999 and 3000 gramms
+# for penguins between 3999 and 3000 grams
 penguins %>% 
   mutate(weight_category = case_when(body_mass_g > 4000 ~ "heavy",
                                      body_mass_g < 3999 & body_mass_g > 3000 ~ "medium",
@@ -82,7 +82,7 @@ penguins %>%
 # group_by() and summarise() function of dplyr ----
 
 # With this code we group the data set by penguin species
-# and calculate the mean and standard deviation (sd) of
+# and calculate the mean and standard deviation (sd()) of
 # the body mass
 penguins %>% 
   group_by(species) %>% 
@@ -90,9 +90,10 @@ penguins %>%
             sd_mass_g = sd(body_mass_g, na.rm = TRUE))
 
 # Here the data set is grouped by species, island and sex
-# same summarise statistics are used
+# same summaries statistics are used
 penguins %>% 
   group_by(species, island, sex) %>% 
   summarise(mean_mass_g = mean(body_mass_g, na.rm = TRUE),
             sd_mass_g = sd(body_mass_g, na.rm = TRUE)) %>% 
   drop_na() # this function drops all of the NAs
+
