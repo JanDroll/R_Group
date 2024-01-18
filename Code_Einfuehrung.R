@@ -96,4 +96,3 @@ penguins %>%
   summarise(mean_mass_g = mean(body_mass_g, na.rm = TRUE),
             sd_mass_g = sd(body_mass_g, na.rm = TRUE)) %>% 
   drop_na() # this function drops all of the NAs
-
